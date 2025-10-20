@@ -13,7 +13,8 @@ class Hogar{
 
 class Huerta {
   var capacidadDeProduccion
-  const nivelDeProduccion
+  // otra opción era definir un objeto nivelDeProduccion
+  const nivelDeProduccion = 100
   method esBuena() = capacidadDeProduccion > nivelDeProduccion
 
   // inyección de dependencias
@@ -32,5 +33,12 @@ class Mascota {
       nivelDeSalud -= plaga.nivelDeDanio()
     } 
   }
+}
+
+class Barrio {
+  const elementos = []
+  method losBuenos() = elementos.filter{e => e.esBuena()}
+  method losMalos() = elementos.filter{e => not e.esBuena()}
+  method esCopado() = self.losBuenos().size() > self.losMalos().size()
 }
 

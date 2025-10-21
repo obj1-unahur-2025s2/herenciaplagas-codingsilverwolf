@@ -8,6 +8,8 @@ class Hogar{
   // inyección de dependencias
   method recibirAtaqueDe(plaga){ 
     nivelDeMugre += plaga.nivelDeDanio()
+    // Lo pongo después porque la plaga al atacar aumenta su población y entonces haría más dañoo. Primero ataca y luego recibe el efecto
+    plaga.atacarElemento()
   }
 }
 
@@ -21,6 +23,7 @@ class Huerta {
   method recibirAtaqueDe(plaga){
     capacidadDeProduccion = 0.max(capacidadDeProduccion -0.1*plaga.nivelDeDanio())
     capacidadDeProduccion = 0.max(capacidadDeProduccion - if (plaga.transmiteEnfermedad()) 10 else 0)
+    plaga.atacarElemento()
   }
 
 }
@@ -31,8 +34,9 @@ class Mascota {
 
   method recibirAtaqueDe(plaga){
     if (plaga.transmiteEnfermedad()) {
-      nivelDeSalud = 0.max(nivelDeSalud - plaga.nivelDeDanio())
-    } 
+      nivelDeSalud = 0.max(nivelDeSalud - plaga.nivelDeDanio())  
+    }
+    plaga.atacarElemento() 
   }
 }
 
